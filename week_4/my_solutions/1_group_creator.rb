@@ -128,6 +128,11 @@ puts phase_picker(fence_lizards)["unit_2_groups"]["group_1"] != phase_picker(fen
 
 
 # 5. Reflection 
-
-
-
+# One of the things we did while pseudo coding was to write out the sample return value of each
+# method. Doing this helped us keep track of what was going on since the return value was 
+# relatively complicated hash object within another hash object. Using the while loop to 
+# declare key values and times method to pop elements into corresponding key 4 times worked 
+# very nicely. We had problem figuring out why line 101 was giving us en error. We were simple 
+# only used to passing in single integer or symbol in between the brackets but after getting
+# the syntax down it was not a problem at all. This was my first time being really stuck at a 
+# problem but having a partner who was more knowledgeable about Ruby syntax was helpful.
