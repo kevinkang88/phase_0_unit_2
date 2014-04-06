@@ -1,7 +1,11 @@
 # U2.W4: Refactor Cipher Solution
 
 
+<<<<<<< HEAD
 # I worked on this challenge [by myself].
+=======
+# I worked on this challenge [by myself, with: ].
+>>>>>>> upstream/master
 
 
 # 1. Solution
@@ -10,6 +14,7 @@
 # Also make sure each step is necessary. If you don't think it's necessary
 # Try implementing the code without it. 
 
+<<<<<<< HEAD
 #when the method is called pass in argument as 'sentence'
 def translate_to_cipher(sentence)
 #convert range into an array by placing each letter into corresponding indices 
@@ -40,11 +45,31 @@ def translate_to_cipher(sentence)
       end
      end
 #convert the array into a string     
+=======
+def translate_to_cipher(sentence)
+    alphabet = ('a'..'z').to_a
+    cipher = Hash[alphabet.zip(alphabet.rotate(4))]
+    spaces = ["@", "#", "$", "%", "^", "&", "*"]
+    
+    original_sentence = sentence.downcase
+    encoded_sentence = []
+    original_sentence.each_char do |element|
+      if cipher.include?(element)
+        encoded_sentence << cipher[element]
+      elsif element == ' '
+        encoded_sentence << spaces.sample
+      else 
+        encoded_sentence << element
+      end
+     end
+    
+>>>>>>> upstream/master
     return encoded_sentence.join
 end
 
 
 # Questions:
+<<<<<<< HEAD
 # 1. What is the .to_a method doing? 
 #     this method converts a range into an array by expanding the range first and assigning every
 #     element to each indices
@@ -71,12 +96,27 @@ end
 # 1. DRIVER TESTS GO BELOW THIS LINE
 # Does this return the same thing every time? 
 #  It does not return the same output every time because of spaces.sample returning random value in an array, spaces.
+=======
+# 1. What is the .to_a method doing?
+# 2. How does the rotate method work? What does it work on?
+# 3. What is `each_char` doing?
+# 4. What does `sample` do?
+# 5. Are there any other methods you want to understand better?
+# 6. Does this code look better or worse than your refactored solution
+#    of the original cipher code? What's better? What's worse?
+# 7. Is this good code? What makes it good? What makes it bad?
+
+
+# 1. DRIVER TESTS GO BELOW THIS LINE
+# Does this return the same thing every time?
+>>>>>>> upstream/master
 p translate_to_cipher("I want cookies")
 p translate_to_cipher("I want cookies")
 p translate_to_cipher("I want cookies")
 p translate_to_cipher("I want cookies")
 
 
+<<<<<<< HEAD
 # 5. Reflection 
 
 # This exercise did not involve much strategy besides following simple directions given. I used 
@@ -85,4 +125,10 @@ p translate_to_cipher("I want cookies")
 # best when I look at the example since it can be difficult explaining their functions in words. New 
 # methods that I learned were zip,rotate, and each_char. I also learned Hash keyword which takes
 # a parameter inside brackets where it converts an array into hash.
+=======
+
+
+
+# 5. Reflection 
+>>>>>>> upstream/master
 
