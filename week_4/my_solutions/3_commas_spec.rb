@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 require_relative "3_separate_commas.rb" 
 =======
 require_relative "[Your file name here]" 
 >>>>>>> upstream/master
+=======
+require_relative "3_separate_commas.rb" 
+>>>>>>> FETCH_HEAD
 #=> Make sure you change this to the name of your code file! Save that file
 # into this repo. 
 
@@ -12,10 +16,14 @@ def random_num(min, max)
 end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 describe "separate_comma" do
 =======
 describe "seperate_comma" do
 >>>>>>> upstream/master
+=======
+describe "separate_comma" do
+>>>>>>> FETCH_HEAD
    it "returns no comma, when the integer is smaller than 1000" do
       separate_comma(random_num(0, 999)).should match /^\d{1,3}$/
    end
