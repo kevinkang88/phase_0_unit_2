@@ -1,10 +1,28 @@
 # U2.W5: Virus Predictor
 
-# I worked on this challenge [by myself, with: ].
+# I worked on this challenge [by myself].
 
-# EXPLANATION OF require_relative
-#
-#
+# Directions 
+# - Run the code. Look at the output. Look at the input (it's in the other file). Explain what the program is doing.
+#   This program takes the state_data, calculates the predicted deaths and speed of spread and outputs the results
+# - Take a look at the state_data file. What is going on with this hash? What does it have in it? (HINT: There are two different syntax used for hashes here. What's the difference?)
+#   STATE_DATA is a hash that includes hash as each values. Each state is represented by String objects and keys of inner hash is represented by Symbols
+# - Comment each method and define it's responsibility.
+#   intialize : accepts values passed in by the user and sets them to appropriate instance variables
+#   virus_effects : displays results from predicted_deaths method and speed_of_spread method.
+#   predicted_deaths : takes population and multiplies by a constant according to population density and returns number of deaths and prints outcome in string
+#   speed_of_spread : add speed by a constant according state given and output a result in string
+# - New Feature: create a report for all 50 states, not just the 4 listed below. Is there a DRY way of doing this?
+#   using each to iterate through hash keys. answer is blow 
+# - Refactor the virus_effects method. (HINT: what is the scope of instance variables?)
+# - What is the purpose of "private". What happens if you move it elsewhere in the class?
+#   methods that are decalred under private statement is not accesible directly. predicted_deaths method and speed_of_spread cannot be called from class object
+# - Refactor the private methods predicted_deaths and speed_of_spread. How can you make them more DRY?
+#   For predicted_deaths I set if..else statement to number_of_deaths
+# BONUS: Access the population by calling it on the instance.
+# - EXPLANATION OF require_relative
+#   adds the contents of passed in file to the library of where it was called
+
 require_relative 'state_data'
 
 class VirusPredictor
@@ -21,24 +39,22 @@ class VirusPredictor
     predicted_deaths(@population_density, @population, @state)
     speed_of_spread(@population_density, @state)
   end
-
-  private  #what is this?  what happens if it were cut and pasted above the virus_effects method
+  
+  private
 
   def predicted_deaths(population_density, population, state)
-    if @population_density >= 200
-      number_of_deaths = (@population * 0.4).floor
-    elsif @population_density >= 150
-      number_of_deaths = (@population * 0.3).floor
-    elsif @population_density >= 100
-      number_of_deaths = (@population * 0.2).floor
-    elsif @population_density >= 50
-      number_of_deaths = (@population * 0.1).floor
-    else 
-      number_of_deaths = (@population * 0.05).floor
-    end
-
+    number_of_deaths = if @population_density >= 200
+                         (@population * 0.4).floor
+                       elsif @population_density >= 150
+                         (@population * 0.3).floor
+                       elsif @population_density >= 100
+                         (@population * 0.2).floor
+                       elsif @population_density >= 50
+                         (@population * 0.1).floor
+                       else 
+                         (@population * 0.05).floor
+                       end
     print "#{@state} will lose #{number_of_deaths} people in this outbreak"
-
   end
 
   def speed_of_spread(population_density, state) #in months
@@ -67,15 +83,10 @@ end
 # DRIVER CODE
  # initialize VirusPredictor for each state
 
+STATE_DATA.each do |state,v|
+  vp = VirusPredictor.new(state, STATE_DATA[state][:population_density], STATE_DATA[state][:population], STATE_DATA[state][:region], STATE_DATA[state][:regional_spread]) 
+  vp.virus_effects
+end
 
-alabama = VirusPredictor.new("Alabama", STATE_DATA["Alabama"][:population_density], STATE_DATA["Alabama"][:population], STATE_DATA["Alabama"][:region], STATE_DATA["Alabama"][:regional_spread]) 
-alabama.virus_effects
 
-jersey = VirusPredictor.new("New Jersey", STATE_DATA["New Jersey"][:population_density], STATE_DATA["New Jersey"][:population], STATE_DATA["New Jersey"][:region], STATE_DATA["New Jersey"][:regional_spread]) 
-jersey.virus_effects
 
-california = VirusPredictor.new("California", STATE_DATA["California"][:population_density], STATE_DATA["California"][:population], STATE_DATA["California"][:region], STATE_DATA["California"][:regional_spread]) 
-california.virus_effects
-
-alaska = VirusPredictor.new("Alaska", STATE_DATA["Alaska"][:population_density], STATE_DATA["Alaska"][:population], STATE_DATA["Alaska"][:region], STATE_DATA["Alaska"][:regional_spread]) 
-alaska.virus_effects
