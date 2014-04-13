@@ -2,7 +2,8 @@
 
 # I worked on this challenge [by myself].
 
-# Directions 
+# Directions & Answers 
+# 
 # - Run the code. Look at the output. Look at the input (it's in the other file). Explain what the program is doing.
 #   This program takes the state_data, calculates the predicted deaths and speed of spread and outputs the results
 # - Take a look at the state_data file. What is going on with this hash? What does it have in it? (HINT: There are two different syntax used for hashes here. What's the difference?)
@@ -13,8 +14,9 @@
 #   predicted_deaths : takes population and multiplies by a constant according to population density and returns number of deaths and prints outcome in string
 #   speed_of_spread : add speed by a constant according state given and output a result in string
 # - New Feature: create a report for all 50 states, not just the 4 listed below. Is there a DRY way of doing this?
-#   using each to iterate through hash keys. answer is blow 
+#   using each to iterate through hash keys. answer is below 
 # - Refactor the virus_effects method. (HINT: what is the scope of instance variables?)
+#   answered on line 39-42
 # - What is the purpose of "private". What happens if you move it elsewhere in the class?
 #   methods that are decalred under private statement is not accesible directly. predicted_deaths method and speed_of_spread cannot be called from class object
 # - Refactor the private methods predicted_deaths and speed_of_spread. How can you make them more DRY?
@@ -36,13 +38,13 @@ class VirusPredictor
   end
 
   def virus_effects  #HINT: What is the SCOPE of instance variables?
-    predicted_deaths(@population_density, @population, @state)
-    speed_of_spread(@population_density, @state)
+    predicted_deaths
+    speed_of_spread
   end
   
   private
 
-  def predicted_deaths(population_density, population, state)
+  def predicted_deaths
     number_of_deaths = if @population_density >= 200
                          (@population * 0.4).floor
                        elsif @population_density >= 150
@@ -57,7 +59,7 @@ class VirusPredictor
     print "#{@state} will lose #{number_of_deaths} people in this outbreak"
   end
 
-  def speed_of_spread(population_density, state) #in months
+  def speed_of_spread #in months
     speed = 0.0
 
     if @population_density >= 200
